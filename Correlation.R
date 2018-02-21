@@ -1,0 +1,10 @@
+dataFrame <- read.table("/home/andrey/Downloads/bands.data", sep = ",")
+res <- subset(dataFrame, V40 == "band" & V26 != '?' & V29 != '?', select = c("V26","V29"))
+roughness <- as.numeric(as.character(res[,'V26']))
+press_speed <- as.numeric(as.character(res[,'V29']))
+corel <- cor(press_speed, roughness)
+print(corel)
+
+plot(press_speed~roughness)
+abline(lm(press_speed~roughness), col = "red")
+#summary(lm(press_speed~roughness))
